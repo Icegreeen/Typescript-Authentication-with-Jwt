@@ -23,7 +23,7 @@ export class UserControlller {
 
        await userRepository.save(newUser)
 
-       const {password: _, ...user} = newUser; // o _ descarta a variavel password
+       const {password: _, ...user} = newUser; 
        return res.status(201).json(user);
     }
 
@@ -55,7 +55,6 @@ export class UserControlller {
     }
 
     async getProfile(req: Request, res: Response){
-        
-        return res.json('Dados do usuário logado');
+        return res.json(req.user);
     }
 }
