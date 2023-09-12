@@ -4,9 +4,6 @@ import { BadRequestError, UnauthorizedError } from "../helpers/api-erros";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-type JwtPayload = {
-    id: number
-}
 export class UserControlller {
     async create(req: Request, res: Response) {
         const {name, email, password} = req.body
@@ -58,24 +55,7 @@ export class UserControlller {
     }
 
     async getProfile(req: Request, res: Response){
-        const { authorization } = req.headers;
-
-        if(!authorization) {
-            throw new UnauthorizedError('Não autorizado')
-        }
-
-        const token = authorization.split(' ')[1]
-
-        const { id } = jwt.verify(token, process.env.JWT_PASS ?? '' ) as JwtPayload; //type
         
-        const user = await userRepository.findOneBy({ id })
-
-        if(!user){
-            throw new UnauthorizedError('Não autorizado')
-        }
-
-        const { password: _, ...loggedUser} = user
-
-        return res.json(loggedUser);
+        return res.json('Dados do usuário logado');
     }
 }
