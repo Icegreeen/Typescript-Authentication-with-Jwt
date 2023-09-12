@@ -35,7 +35,7 @@ DB_PASS=postgres
 DB_NAME=postgres
 
 PORT=3000
-JWT_PASS=
+JWT_PASS=your key
 ```
 *Make sure that all environment variables match the credentials and that postgres is running on your machine.
 
